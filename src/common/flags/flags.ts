@@ -92,6 +92,6 @@ const getOrgOrThrow = async (input?: string): Promise<Org> => {
   }
   const org: Org = await Org.create({ aliasOrUsername: alias });
   // eslint-disable-next-line no-console
-  console.log('Org: ', org.getUsername());
+  console.log('Org: ', org);
   return org;
 };
