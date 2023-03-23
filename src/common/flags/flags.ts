@@ -81,11 +81,17 @@ export const concise: BooleanFlag<boolean> = Flags.boolean({
  * or to the alias/username set in --target-devops-center config variable.
  */
 const getOrgOrThrow = async (input?: string): Promise<Org> => {
+  // eslint-disable-next-line no-console
+  console.log('input: ', input);
   const aggregator = await ConfigAggregator.create({ customConfigMeta: ConfigMeta });
   const alias = input ? input : aggregator.getInfo(ConfigVars.TARGET_DEVOPS_CENTER)?.value?.toString();
+  // eslint-disable-next-line no-console
+  console.log('alias: ', alias);
   if (!alias) {
     throw messages.createError('errors.NoDefaultDoceEnv');
   }
   const org: Org = await Org.create({ aliasOrUsername: alias });
+  // eslint-disable-next-line no-console
+  console.log('Org: ', org.getUsername());
   return org;
 };
